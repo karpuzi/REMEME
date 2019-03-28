@@ -1,0 +1,50 @@
+<header class="header">
+    <% include partials/header.ejs %>
+</header>
+<div class="container">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (notification) { %>
+        <form class="add-notification-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="not_name">Notification Name</label>
+                    <input type="text" class="form-control" name="not_name" id="not_name" value="<%= notification.not_name %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="not_description">Description</label>
+                    <input type="text" class="form-control" name="not_description" id="not_description" value="<%= notification.not_description %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" value="<%= notification.username %>" required disabled title="Username cannot be edited.">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="not_hour">Hour</label>
+                    <input type="number" class="form-control" name="not_hour" id="not_hour" placeholder="Hour" value="<%= notification.not_hour %>" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="not_type">Notification Type</label>
+                    <select id="not_type" name="not_type" class="form-control" required>
+                        <option selected><%= notification.not_type %></option>
+                        <option>Alarm Clock</option>
+                        <option>Reminder</option>
+                        <option>Question</option>
+                        <option>Scale</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success float-right">Update Notification</button>
+        </form>
+    <% } else { %>
+        <p class="text-center">Notification Not Found. Go <a href="/add">here</a> to add notifications.</p>
+    <% } %>
+</div>
+</div>
+
+</body>
+</html>

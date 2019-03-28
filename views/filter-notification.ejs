@@ -1,0 +1,45 @@
+<header class="header">
+    <% include partials/header.ejs %>
+</header>
+<div class="table-wrapper">
+    <% if (notifications.length > 0) {%>
+        <table class="table table-hovered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Image</th>
+                <th scope="col">Notification Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Type</th>
+                <th scope="col">Hour</th>
+                <th scope="col">Username</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% notifications.forEach((notification, index) => { %>
+                <tr>
+                    <th scope="row"><%= notification.id %></th>
+                    <td><img src="/assets/img/<%= notification.image %>" class="rounded-circle notification-img" alt=""></td>
+                    <td><%= notification.not_name %></td>
+                    <td><%= notification.not_description %></td>
+                    <td><%= notification.not_type %></td>
+                    <td><%= notification.not_hour %></td>
+                    <td>@<%= notification.username %></td>
+                    <td>
+                        <a href="/edit/<%= notification.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                        <a href="/delete/<%= notification.id %>" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p class="text-center">No notifications found. Go <a href="/add" >here</a> to add notifications.</p>
+    <% } %>
+</div>
+</div>
+<footer>
+    <% include partials/footer.ejs %>
+</footer>
+
